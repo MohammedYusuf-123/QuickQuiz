@@ -66,7 +66,11 @@ dependencies {
 
     //hilt dependencies
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.fragment)
     ksp(libs.hilt.compiler)
+    ksp(libs.dagger.compiler)
+
 
     // Room Database
     implementation(libs.androidx.room.runtime)
@@ -77,4 +81,13 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.play.services)
+
+    //Retrofit
+    implementation(libs.retrofit)
+
+    //GSON converter
+    implementation(libs.converter.gson)
+
+    //Okhttp
+    implementation(libs.okhttp)
 }
