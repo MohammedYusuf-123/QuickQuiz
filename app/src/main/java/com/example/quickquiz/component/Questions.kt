@@ -213,8 +213,8 @@ fun QuestionDisplay(
                 }
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
@@ -233,7 +233,7 @@ fun QuestionDisplay(
                         fontSize = 17.sp
                     )
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+//                Spacer(modifier = Modifier.width(10.dp))
                 Button(
                     modifier = Modifier
                         .padding(3.dp),
