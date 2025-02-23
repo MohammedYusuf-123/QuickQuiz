@@ -7,5 +7,5 @@ import com.example.quickquiz.component.Questions
 
 @Composable
 fun TriviaHome(viewModel: QuestionsViewModel = hiltViewModel(), modifier: Modifier) {
-    Questions(viewModel)
+    Questions(viewModel, modifier = modifier)
 }
