@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -54,7 +56,23 @@ fun Questions(viewModel: QuestionsViewModel, modifier: Modifier) {
         mutableIntStateOf(0)
     }
     if (viewModel.data.value.loading == true) {
-        CircularProgressIndicator()
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+            color = AppColors.mDarkPurple
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CircularProgressIndicator(
+                    color = AppColors.mOffWhite,
+                    trackColor = AppColors.mLightPurple
+                )
+            }
+        }
+
         Log.d("Loading", "Loading....")
     } else {
         val question = try {
@@ -67,7 +85,10 @@ fun Questions(viewModel: QuestionsViewModel, modifier: Modifier) {
                 question = question!!,
                 modifier = modifier,
                 questionIndex = questionIndex,
-                viewModel = viewModel
+                viewModel = viewModel,
+                onPreviousClicked = {
+                    if (questionIndex.intValue >= 1) questionIndex.value -= 1
+                }
             ) {
                 questionIndex.value += 1
             }
@@ -81,6 +102,7 @@ fun QuestionDisplay(
     question: QuestionItem,
     questionIndex: MutableState<Int>,
     viewModel: QuestionsViewModel,
+    onPreviousClicked: (Int) -> Unit = {},
     onNextClicked: (Int) -> Unit = {}
 ) {
     val choicesState = remember(question) {
@@ -190,22 +212,45 @@ fun QuestionDisplay(
                     Text(text = annotatedString, modifier = Modifier.padding(6.dp))
                 }
             }
-            Button(
-                modifier = Modifier
-                    .padding(3.dp)
-                    .align(Alignment.CenterHorizontally),
-                shape = RoundedCornerShape(34.dp),
-                colors = ButtonDefaults.buttonColors(AppColors.mLightBlue),
-                onClick = {
-                    onNextClicked(questionIndex.value)
-                }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Next",
-                    modifier = Modifier.padding(4.dp),
-                    color = AppColors.mOffWhite,
-                    fontSize = 17.sp
-                )
+                Button(
+                    modifier = Modifier
+                        .padding(3.dp),
+                    shape = RoundedCornerShape(34.dp),
+                    colors = ButtonDefaults.buttonColors(AppColors.mLightBlue),
+                    onClick = {
+                        onPreviousClicked(questionIndex.value)
+                    }
+                ) {
+                    Text(
+                        text = "Previous",
+                        modifier = Modifier.padding(4.dp),
+                        color = AppColors.mOffWhite,
+                        fontSize = 17.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Button(
+                    modifier = Modifier
+                        .padding(3.dp),
+//                        .align(Alignment.End),
+                    shape = RoundedCornerShape(34.dp),
+                    colors = ButtonDefaults.buttonColors(AppColors.mLightBlue),
+                    onClick = {
+                        onNextClicked(questionIndex.value)
+                    }
+                ) {
+                    Text(
+                        text = "Next",
+                        modifier = Modifier.padding(4.dp),
+                        color = AppColors.mOffWhite,
+                        fontSize = 17.sp
+                    )
+                }
             }
         }
     }
@@ -304,7 +349,7 @@ fun ShowProgress(score: Int = 12) {
             ),
             onClick = {}) {
             Text(
-                text = ((score+1) * 10).toString(),
+                text = ((score + 1) * 10).toString(),
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(23.dp))
                     .fillMaxHeight(0.87F)
