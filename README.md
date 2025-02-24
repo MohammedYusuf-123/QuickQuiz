@@ -18,19 +18,19 @@ QuickQuiz is an interactive trivia application designed using **Kotlin** and **J
 ## 📸 Screenshots  
 
 ### **Loading Screen**  
-<img src="./screenshots/InitialLoadingScreen.jpeg" alt="Loading Screen" width="300"/>
+<img src="./screenshots/InitialLoadingScreen.png" alt="Loading Screen" width="300"/>
 
 ### **First Question**  
-<img src="./screenshots/FirstQuestion.jpeg" alt="First Question" width="300"/>
+<img src="./screenshots/FirstQuestion.png" alt="First Question" width="300"/>
 
 ### **Correct Answer Selected**  
-<img src="./screenshots/CorrectAnswerSelected.jpeg" alt="Correct Answer" width="300"/>
+<img src="./screenshots/CorrectAnswerSelected.png" alt="Correct Answer" width="300"/>
 
 ### **Wrong Answer Selected**  
-<img src="./screenshots/WrongAnswerSelected.jpeg" alt="Wrong Answer" width="300"/>
+<img src="./screenshots/WrongAnswerSelected.png" alt="Wrong Answer" width="300"/>
 
 ### **Progress Bar with Score**  
-<img src="./screenshots/ProgressBarWithScore.jpeg" alt="Progress Bar" width="300"/>
+<img src="./screenshots/ProgressBarWithScore.png" alt="Progress Bar" width="300"/>
 
 ---
 
